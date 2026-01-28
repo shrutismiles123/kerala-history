@@ -13,9 +13,116 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: #f4f1e8;
+            background: linear-gradient(to bottom, #f4f1e8 0%, #e8dcc4 50%, #f4f1e8 100%);
             color: #3a2a1a;
-            line-height: 1.8;
+            line-height: 2;
+            overflow-x: hidden;
+            position: relative;
+            font-size: 1.15rem;
+        }
+
+        /* Enhanced Background Elements */
+        .floating-leaf {
+            position: fixed;
+            font-size: 2.5rem;
+            opacity: 0.25;
+            pointer-events: none;
+            z-index: 1;
+            animation: float-diagonal 15s infinite ease-in-out;
+        }
+
+        .floating-leaf:nth-child(1) { top: 5%; left: 3%; animation-delay: 0s; }
+        .floating-leaf:nth-child(2) { top: 25%; right: 5%; animation-delay: 3s; font-size: 3rem; }
+        .floating-leaf:nth-child(3) { top: 45%; left: 7%; animation-delay: 6s; }
+        .floating-leaf:nth-child(4) { top: 65%; right: 10%; animation-delay: 9s; font-size: 2rem; }
+        .floating-leaf:nth-child(5) { top: 85%; left: 15%; animation-delay: 12s; font-size: 2.8rem; }
+        .floating-leaf:nth-child(6) { top: 15%; left: 50%; animation-delay: 4s; }
+        .floating-leaf:nth-child(7) { top: 55%; right: 20%; animation-delay: 8s; font-size: 2.3rem; }
+        .floating-leaf:nth-child(8) { top: 75%; left: 40%; animation-delay: 10s; }
+
+        @keyframes float-diagonal {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.25; }
+            25% { transform: translate(30px, -40px) rotate(15deg); opacity: 0.35; }
+            50% { transform: translate(-20px, -80px) rotate(-10deg); opacity: 0.2; }
+            75% { transform: translate(35px, -50px) rotate(20deg); opacity: 0.3; }
+        }
+
+        .palm-tree {
+            position: fixed;
+            font-size: 5rem;
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 1;
+            animation: sway 8s infinite ease-in-out;
+        }
+
+        .palm-tree.left { bottom: 0; left: 1%; }
+        .palm-tree.right { bottom: 0; right: 1%; animation-delay: 2s; }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(4deg); }
+            75% { transform: rotate(-4deg); }
+        }
+
+        /* Decorative corner elements */
+        .corner-decor {
+            position: fixed;
+            font-size: 4rem;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+            animation: pulse-glow 6s infinite;
+        }
+
+        .corner-decor.top-left { top: 20px; left: 20px; }
+        .corner-decor.top-right { top: 20px; right: 20px; }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.15; transform: scale(1); }
+            50% { opacity: 0.25; transform: scale(1.1); }
+        }
+
+        /* Ornate border patterns */
+        .decorative-border {
+            position: fixed;
+            width: 100%;
+            height: 50px;
+            background: repeating-linear-gradient(90deg, 
+                #d4af37 0px, #d4af37 15px, 
+                transparent 15px, transparent 30px,
+                #b8860b 30px, #b8860b 35px,
+                transparent 35px, transparent 50px);
+            opacity: 0.4;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .decorative-border.top { top: 0; }
+        .decorative-border.bottom { bottom: 0; }
+
+        /* Side ornaments */
+        .side-ornament {
+            position: fixed;
+            width: 30px;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.2;
+        }
+
+        .side-ornament.left {
+            left: 0;
+            background: repeating-linear-gradient(0deg,
+                #d4af37 0px, #d4af37 20px,
+                transparent 20px, transparent 40px);
+        }
+
+        .side-ornament.right {
+            right: 0;
+            background: repeating-linear-gradient(0deg,
+                #d4af37 0px, #d4af37 20px,
+                transparent 20px, transparent 40px);
         }
 
         .hero {
@@ -24,215 +131,462 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(101, 67, 33, 0.7), rgba(139, 90, 43, 0.6)), 
+            background: linear-gradient(rgba(101, 67, 33, 0.88), rgba(139, 90, 43, 0.85)), 
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect fill="%23d4c4a8" width="100" height="100"/><path d="M0 0L100 100M100 0L0 100" stroke="%23c9b896" stroke-width="0.5" opacity="0.3"/></svg>');
             background-size: cover;
             text-align: center;
-            padding: 2rem;
+            padding: 3rem;
             position: relative;
             overflow: hidden;
             animation: fadeIn 2s ease-in;
+            z-index: 2;
+            border-bottom: 5px solid #d4af37;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero::before {
             content: '🌿';
             position: absolute;
-            top: 10%;
-            left: 10%;
-            font-size: 3rem;
-            opacity: 0.3;
-            animation: float 6s ease-in-out infinite;
+            top: 12%;
+            left: 12%;
+            font-size: 5rem;
+            opacity: 0.4;
+            animation: float-gentle 6s ease-in-out infinite;
         }
 
         .hero::after {
             content: '🌿';
             position: absolute;
-            bottom: 10%;
-            right: 10%;
-            font-size: 3rem;
-            opacity: 0.3;
-            animation: float 6s ease-in-out infinite 3s;
+            bottom: 12%;
+            right: 12%;
+            font-size: 5rem;
+            opacity: 0.4;
+            animation: float-gentle 6s ease-in-out infinite 3s;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(15deg); }
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.8rem;
             color: #ffd700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            margin-bottom: 1rem;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
+            margin-bottom: 1.5rem;
             font-weight: bold;
+            animation: slideDown 1.5s ease-out;
+            position: relative;
+            z-index: 3;
+            letter-spacing: 2px;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-60px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: #f0e6d2;
             font-style: italic;
-            max-width: 800px;
+            max-width: 900px;
+            animation: slideUp 1.5s ease-out 0.5s both;
+            position: relative;
+            z-index: 3;
         }
 
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Ornamental divider */
+        .ornament {
+            text-align: center;
+            font-size: 3rem;
+            color: #d4af37;
+            margin: 3rem 0;
+            opacity: 0.7;
+            animation: pulse-rotate 4s infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes pulse-rotate {
+            0%, 100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.1) rotate(5deg); }
+        }
+
+        .ornament::before,
+        .ornament::after {
+            content: '━━━';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #b8860b;
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .ornament::before { left: 20%; }
+        .ornament::after { right: 20%; }
+
         .section {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 1300px;
+            margin: 5rem auto;
+            padding: 4rem 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Multiple decorative elements on sections */
+        .section::before {
+            content: '🍃';
+            position: absolute;
+            top: -20px;
+            left: 40px;
+            font-size: 2.5rem;
+            animation: spin-slow 12s linear infinite;
+        }
+
+        .section::after {
+            content: '🍃';
+            position: absolute;
+            bottom: -20px;
+            right: 40px;
+            font-size: 2.5rem;
+            animation: spin-slow 12s linear infinite reverse;
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .section h2 {
-            font-size: 2.5rem;
+            font-size: 3.2rem;
             color: #654321;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             text-align: center;
-            border-bottom: 3px solid #b8860b;
-            padding-bottom: 1rem;
+            border-bottom: 4px solid #b8860b;
+            padding-bottom: 1.5rem;
+            position: relative;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .section h2::before {
+            content: '◈◈◈';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -40px;
+            color: #d4af37;
+            font-size: 1.8rem;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; text-shadow: 0 0 15px #ffd700; }
+        }
+
+        .section p {
+            font-size: 1.3rem;
+            line-height: 2.2;
+            text-align: justify;
+            color: #4a3a2a;
         }
 
         .geography-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
+            display: block;
+        }
+
+        .geography-content p {
+            margin-bottom: 1.5rem;
         }
 
         .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
 
         .card {
-            background: #fff9e6;
-            padding: 2rem;
-            border-radius: 10px;
-            border: 2px solid #d4af37;
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: linear-gradient(to bottom, #fff9e6, #fef6dd);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 3px solid #d4af37;
+            transition: all 0.4s ease;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.5s;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+            transform: rotate(45deg);
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+            border-color: #b8860b;
         }
 
         .card-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: bounce-subtle 3s infinite;
+        }
+
+        @keyframes bounce-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
         .card h3 {
             color: #654321;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.8rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .card p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            text-align: center;
         }
 
         .center-quote {
-            background: linear-gradient(135deg, #8b5a2b, #654321);
+            background: linear-gradient(135deg, #8b5a2b, #654321, #8b5a2b);
             color: #ffd700;
-            padding: 4rem 2rem;
-            margin: 4rem 0;
+            padding: 6rem 4rem;
+            margin: 6rem 0;
             text-align: center;
-            font-size: 2rem;
+            font-size: 2.6rem;
             font-weight: bold;
             font-style: italic;
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4), inset 0 0 60px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+            border-radius: 15px;
+            animation: glow 5s infinite;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+
+        @keyframes glow {
+            0%, 100% { 
+                box-shadow: 0 15px 50px rgba(0,0,0,0.4), inset 0 0 60px rgba(0,0,0,0.3);
+            }
+            50% { 
+                box-shadow: 0 15px 50px rgba(212, 175, 55, 0.6), inset 0 0 60px rgba(212, 175, 55, 0.2);
+            }
+        }
+
+        .center-quote::before,
+        .center-quote::after {
+            content: '❝';
+            position: absolute;
+            font-size: 6rem;
+            opacity: 0.4;
+            color: #ffd700;
+        }
+
+        .center-quote::before {
+            top: 30px;
+            left: 40px;
+        }
+
+        .center-quote::after {
+            content: '❞';
+            bottom: 30px;
+            right: 40px;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
 
         .stat-box {
-            background: linear-gradient(135deg, #2c5f2d, #4a7c59);
+            background: linear-gradient(135deg, #2c5f2d, #4a7c59, #2c5f2d);
             color: white;
-            padding: 2rem;
-            border-radius: 10px;
+            padding: 3rem;
+            border-radius: 20px;
             text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            border: 2px solid rgba(144, 238, 144, 0.3);
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: transform 0.6s;
+        }
+
+        .stat-box:hover::before {
+            transform: rotate(45deg) translate(25%, 25%);
+        }
+
+        .stat-box:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 40px rgba(76, 175, 80, 0.5);
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 4rem;
             font-weight: bold;
             color: #90ee90;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            animation: count-up 2s ease-out;
+        }
+
+        @keyframes count-up {
+            from { opacity: 0; transform: scale(0.3); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .stat-box div:last-child {
+            font-size: 1.4rem;
+            margin-top: 1rem;
         }
 
         .footer {
-            background: #3a2a1a;
+            background: linear-gradient(to bottom, #3a2a1a, #2a1a0a);
             color: #d4af37;
             text-align: center;
-            padding: 3rem;
-            margin-top: 4rem;
-            font-size: 1.5rem;
+            padding: 5rem 3rem;
+            margin-top: 6rem;
+            font-size: 2.2rem;
             position: relative;
+            z-index: 2;
+            box-shadow: 0 -15px 40px rgba(0,0,0,0.4);
+            border-top: 5px solid #d4af37;
         }
 
         .footer::before {
-            content: '✦ ✦ ✦';
+            content: '✦ ✦ ✦ ✦ ✦';
             display: block;
-            margin-bottom: 1rem;
-            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-size: 3rem;
+            animation: sparkle 3s infinite;
         }
 
-        .project-image {
-            width: 100%;
-            border-radius: 10px;
-            border: 3px solid #b8860b;
-            margin: 1rem 0;
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700; }
         }
 
-        .image-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
+        .footer-subtitle {
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            font-style: italic;
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1.2rem; }
-            .section h2 { font-size: 2rem; }
-            .geography-content { grid-template-columns: 1fr; }
-            .center-quote { font-size: 1.5rem; }
-            .image-grid { grid-template-columns: 1fr; }
+            body { font-size: 1rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.3rem; }
+            .section { padding: 2.5rem 2rem; }
+            .section h2 { font-size: 2.2rem; }
+            .section p { font-size: 1.1rem; }
+            .center-quote { font-size: 1.6rem; padding: 3rem 2rem; }
+            .floating-leaf { font-size: 1.8rem; }
+            .palm-tree { font-size: 3.5rem; }
+            .ornament { font-size: 2rem; }
+            .ornament::before, .ornament::after { display: none; }
         }
     </style>
 </head>
 <body>
+    <!-- Enhanced floating decorative elements -->
+    <div class="floating-leaf">🍂</div>
+    <div class="floating-leaf">🌿</div>
+    <div class="floating-leaf">🍃</div>
+    <div class="floating-leaf">🍂</div>
+    <div class="floating-leaf">🌿</div>
+    <div class="floating-leaf">🍃</div>
+    <div class="floating-leaf">🍂</div>
+    <div class="floating-leaf">🌿</div>
+
+    <!-- Palm trees -->
+    <div class="palm-tree left">🌴</div>
+    <div class="palm-tree right">🌴</div>
+
+    <!-- Corner decorations -->
+    <div class="corner-decor top-left">◈</div>
+    <div class="corner-decor top-right">◈</div>
+
+    <!-- Decorative borders -->
+    <div class="decorative-border top"></div>
+    <div class="decorative-border bottom"></div>
+
+    <!-- Side ornaments -->
+    <div class="side-ornament left"></div>
+    <div class="side-ornament right"></div>
+
     <section class="hero">
         <h1>The Making of Regional Culture: Cheras & the Growth of Malayalam</h1>
         <p>A journey through geography, culture, language, and history</p>
     </section>
 
-    <section class="section">
+    <div class="ornament">✦ ◈ ❖ ◈ ✦</div>
+
+    <section class="section scroll-fade">
         <h2>🏔️ The Land That Shaped Culture</h2>
         <div class="geography-content">
-            <div>
-                <p>The geographical landscape of ancient Kerala played a crucial role in shaping its unique regional culture. The majestic Western Ghats formed a natural barrier to the east, while the Arabian Sea embraced its western shores. Rivers like Periyar, Bharathapuzha, and Pamba flowed through the land, nurturing both the soil and civilization.</p>
-                <p>This unique geography fostered a distinct identity, isolated yet connected to the world through maritime trade routes. The monsoons blessed the land with abundance, creating a culture deeply rooted in nature and prosperity.</p>
-            </div>
-            <div>
-                <img src="map.png" alt="Historical Map of Chera Region" class="project-image">
-                <p style="text-align: center; font-style: italic; margin-top: 0.5rem; color: #654321;">Geography played a key role in shaping Kerala's regional culture</p>
-            </div>
+            <p>The geographical landscape of ancient Kerala played a crucial role in shaping its unique regional culture. The majestic Western Ghats formed a natural barrier to the east, while the Arabian Sea embraced its western shores. Rivers like Periyar, Bharathapuzha, and Pamba flowed through the land, nurturing both the soil and civilization.</p>
+            <p>This unique geography fostered a distinct identity, isolated yet connected to the world through maritime trade routes. The monsoons blessed the land with abundance, creating a culture deeply rooted in nature and prosperity.</p>
         </div>
     </section>
 
-    <section class="section">
+    <div class="ornament">✦ ◈ ❖ ◈ ✦</div>
+
+    <section class="section scroll-fade">
         <h2>👑 The Chera Dynasty</h2>
-        <p style="text-align: center; margin-bottom: 2rem;">The Cheras were one of the three ancient Tamil kingdoms, ruling the western coast with wisdom and valor. Known for their maritime prowess and cultural patronage, they established a legacy that would shape South Indian civilization for centuries.</p>
+        <p style="text-align: center; margin-bottom: 2.5rem;">The Cheras were one of the three ancient Tamil kingdoms, ruling the western coast with wisdom and valor. Known for their maritime prowess and cultural patronage, they established a legacy that would shape South Indian civilization for centuries.</p>
         
         <div class="cards-container">
             <div class="card">
@@ -251,14 +605,11 @@
                 <p>The Cheras were great patrons of art and religion, building magnificent temples and supporting cultural activities.</p>
             </div>
         </div>
-        
-        <div class="image-grid">
-            <img src="image5.jpg" alt="Chera Warrior Woman" class="project-image">
-            <img src="image6.jpg" alt="Chera Warrior Man" class="project-image">
-        </div>
     </section>
 
-    <section class="section">
+    <div class="ornament">✦ ◈ ❖ ◈ ✦</div>
+
+    <section class="section scroll-fade">
         <h2>🌺 Life, Beliefs, and Bravery</h2>
         <div class="cards-container">
             <div class="card">
@@ -284,18 +635,20 @@
         </div>
     </section>
 
-    <section class="section">
+    <div class="ornament">✦ ◈ ❖ ◈ ✦</div>
+
+    <section class="section scroll-fade">
         <h2>📜 Before the Growth of Malayalam</h2>
         <p>In the early periods, the people of Kerala used Tamil-Brahmi script for inscriptions and communication. Knowledge was primarily transmitted through oral traditions, with stories, epics, and wisdom passed down through generations.</p>
-        
-        <img src="image3.jpg" alt="Palm-Leaf Manuscripts" class="project-image">
         
         <p style="margin-top: 2rem;">Temple inscriptions on stone and cave carvings preserved royal edicts and religious texts. Palm-leaf manuscripts became the primary medium for recording knowledge, carefully preserved by scholars and priests. This era laid the foundation for what would become a rich literary tradition.</p>
     </section>
 
-    <section class="section">
+    <div class="ornament">✦ ◈ ❖ ◈ ✦</div>
+
+    <section class="section scroll-fade">
         <h2>✍️ The Growth of Malayalam</h2>
-        <p>As centuries passed, the Malayalam language began to emerge as a distinct linguistic identity. The influence of Sanskrit enriched the vocabulary, while local dialects contributed to its unique character.</p>
+        <p style="margin-bottom: 2.5rem;">As centuries passed, the Malayalam language began to emerge as a distinct linguistic identity. The influence of Sanskrit enriched the vocabulary, while local dialects contributed to its unique character.</p>
         
         <div class="cards-container">
             <div class="card">
@@ -314,13 +667,13 @@
                 <p>Temple schools and centers of learning propagated the language across the region.</p>
             </div>
         </div>
-        
-        <img src="image4.jpg" alt="Cave Carvings with Malayalam Script" class="project-image">
     </section>
 
-    <section class="section">
+    <div class="ornament">✦ ◈ ❖ ◈ ✦</div>
+
+    <section class="section scroll-fade">
         <h2>🎨 Preserving History Through Art</h2>
-        <p style="text-align: center; margin-bottom: 2rem;">The ancient people of Kerala left behind a magnificent legacy of artistic expression that continues to inspire us today.</p>
+        <p style="text-align: center; margin-bottom: 2.5rem;">The ancient people of Kerala left behind a magnificent legacy of artistic expression that continues to inspire us today.</p>
         
         <div class="cards-container">
             <div class="card">
@@ -339,26 +692,24 @@
                 <p>Carefully preserved texts contained knowledge of medicine, astronomy, literature, and philosophy.</p>
             </div>
         </div>
-
-        <img src="image2.jpg" alt="Traditional Kerala Mural Art" class="project-image">
     </section>
 
-    <div class="center-quote">
-        "Language, land, and people together shape the soul of history."
+    <div class="center-quote scroll-fade">
+        Language, land, and people together shape the soul of history.
     </div>
 
-    <section class="section">
+    <section class="section scroll-fade">
         <h2>📊 From Tradition to Modern Kerala</h2>
-        <p style="text-align: center;">Social progress in Kerala accelerated dramatically in modern times through education reforms, healthcare initiatives, and cultural awakening.</p>
+        <p style="text-align: center; margin-bottom: 2rem;">Social progress in Kerala accelerated dramatically in modern times through education reforms, healthcare initiatives, and cultural awakening.</p>
         
-        <img src="image7.jpg" alt="Historical Infographic" class="project-image">
-        
-        <p style="text-align: center; font-style: italic; color: #654321; margin-top: 1rem;">"Social progress increased rapidly in modern times due to education and reforms."</p>
+        <p style="text-align: center; font-style: italic; color: #654321; margin-top: 2rem; font-size: 1.25rem;">"Social progress increased rapidly in modern times due to education and reforms."</p>
     </section>
 
-    <section class="section">
+    <div class="ornament">✦ ◈ ❖ ◈ ✦</div>
+
+    <section class="section scroll-fade">
         <h2>🌟 Kerala Today</h2>
-        <p style="text-align: center; margin-bottom: 2rem;">Modern Kerala stands as a beacon of social development, combining rich cultural heritage with progressive achievements.</p>
+        <p style="text-align: center; margin-bottom: 2.5rem;">Modern Kerala stands as a beacon of social development, combining rich cultural heritage with progressive achievements.</p>
         
         <div class="stats-grid">
             <div class="stat-box">
@@ -378,26 +729,44 @@
                 <div>Digital Literacy</div>
             </div>
         </div>
-        
-        <div class="image-grid">
-            <img src="image1.jpg" alt="Chera Kingdom Heritage" class="project-image">
-            <img src="image8.jpg" alt="Kerala's Modern Progress" class="project-image">
-        </div>
     </section>
 
-    <section class="section">
+    <div class="ornament">✦ ◈ ❖ ◈ ✦</div>
+
+    <section class="section scroll-fade">
         <h2>🌅 Conclusion</h2>
         <p>The journey from the ancient Chera dynasty to modern Kerala is a testament to the enduring power of culture, language, and geography in shaping regional identity. The Cheras laid the foundation through their patronage of arts, just governance, and maritime enterprise.</p>
         
-        <p style="margin-top: 1.5rem;">The evolution of Malayalam from Tamil-Brahmi inscriptions to a rich literary language reflects centuries of social and cultural transformation. Each phase of development was influenced by the land itself—the mountains, rivers, and seas that defined Kerala's geography.</p>
+        <p style="margin-top: 1.8rem;">The evolution of Malayalam from Tamil-Brahmi inscriptions to a rich literary language reflects centuries of social and cultural transformation. Each phase of development was influenced by the land itself—the mountains, rivers, and seas that defined Kerala's geography.</p>
         
-        <p style="margin-top: 1.5rem;">Today, Kerala's achievements in education, healthcare, and social progress stand as proof that cultural heritage and modern development can walk hand in hand. The story of the Cheras and Malayalam reminds us that regional cultures are not static—they are living, breathing entities that evolve while honoring their roots.</p>
+        <p style="margin-top: 1.8rem;">Today, Kerala's achievements in education, healthcare, and social progress stand as proof that cultural heritage and modern development can walk hand in hand. The story of the Cheras and Malayalam reminds us that regional cultures are not static—they are living, breathing entities that evolve while honoring their roots.</p>
         
-        <p style="margin-top: 1.5rem; text-align: center; font-style: italic; color: #654321; font-size: 1.2rem;">Through understanding our past, we illuminate the path to our future.</p>
+        <p style="margin-top: 2rem; text-align: center; font-style: italic; color: #654321; font-size: 1.5rem; font-weight: bold;">Through understanding our past, we illuminate the path to our future.</p>
     </section>
 
     <footer class="footer">
         Thank You
+        <div class="footer-subtitle">A Digital Exploration of Kerala's Heritage</div>
     </footer>
+
+    <script>
+        // Scroll animation observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-fade').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
